@@ -1,0 +1,64 @@
+<% layout('layouts/layout.ejs') %>
+
+<div class="col-12">
+  <form id="licenseForm">
+    <div class="card">
+      <div class="card-body">
+        <div class="row row-cards">
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body p-0">
+                <!-- Body -->
+                <div class="mb-3">
+                  <label class="form-label">ID</label>
+                  <input type="text" class="form-control" id="id" placeholder="id..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Key</label>
+                  <input type="text" class="form-control" id="key" placeholder="key..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Software ID</label>
+                  <input type="text" class="form-control" id="software_id" placeholder="software_id..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Geräte ID</label>
+                  <input type="text" class="form-control" id="geraete_id" placeholder="geraete_id..." />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button type="submit" id="tableSubmit" class="btn btn-primary ms-auto">Add or Edit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button id="licenseDelete" class="btn btn-danger ms-auto">Delete Data</button><br />
+<button id="licenseUnselect" class="btn btn-success ms-auto">Unselect All</button><br />
+
+<table id="license" class="display" style="width: 100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Key</th>
+      <th>Software ID</th>
+      <th>Geräte ID</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th>ID</th>
+      <th>Key</th>
+      <th>Software ID</th>
+      <th>Geräte ID</th>
+    </tr>
+  </tfoot>
+</table>
+
+<script src="/js/license.bundle.js"></script>

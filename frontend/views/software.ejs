@@ -1,0 +1,52 @@
+<% layout('layouts/layout.ejs') %>
+
+<div class="col-12">
+  <form id="softwareForm">
+    <div class="card">
+      <div class="card-body">
+        <div class="row row-cards">
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body p-0">
+                <!-- Body -->
+                <div class="mb-3">
+                  <label class="form-label">ID</label>
+                  <input type="text" class="form-control" id="id" placeholder="id..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Bezeichnung</label>
+                  <input type="text" class="form-control" id="bezeichnung" placeholder="bezeichnung..." />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button type="submit" id="tableSubmit" class="btn btn-primary ms-auto">Add or Edit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button id="softwareDelete" class="btn btn-danger ms-auto">Delete Data</button><br />
+<button id="softwareUnselect" class="btn btn-success ms-auto">Unselect All</button><br />
+
+<table id="software" class="display" style="width: 100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Bezeichnung</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th>ID</th>
+      <th>Bezeichnung</th>
+    </tr>
+  </tfoot>
+</table>
+
+<script src="/js/software.bundle.js"></script>

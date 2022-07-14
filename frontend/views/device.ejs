@@ -1,0 +1,114 @@
+<% layout('layouts/layout.ejs') %>
+
+<div class="col-12">
+  <form id="deviceForm">
+    <div class="card">
+      <div class="card-body">
+        <div class="row row-cards">
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body p-0">
+                <!-- Body -->
+                <div class="mb-3">
+                  <label class="form-label">ID</label>
+                  <input type="text" class="form-control" id="id" placeholder="id..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="name..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Vorname</label>
+                  <input type="text" class="form-control" id="vorname" placeholder="vorname..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" placeholder="username..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Passwort</label>
+                  <input type="text" class="form-control" id="password" placeholder="passwort..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Computername</label>
+                  <input type="text" class="form-control" id="computername" placeholder="computername..." />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md">
+            <div class="card">
+              <div class="card-body p-0">
+                <!-- Body -->
+                <div class="mb-3">
+                  <label class="form-label">Workgroup</label>
+                  <input type="text" class="form-control" id="workgroup" placeholder="workgroup..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">System</label>
+                  <input type="text" class="form-control" id="system" placeholder="system..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">IP</label>
+                  <input type="text" class="form-control" id="ip_adress" placeholder="ip..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Mac</label>
+                  <input type="text" class="form-control" id="mac_adress" placeholder="mac..." />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Datum</label>
+                  <input type="text" class="form-control" id="datum" placeholder="datum..." />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="d-flex">
+        <button type="submit" id="tableSubmit" class="btn btn-primary ms-auto">Add or Edit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<button id="deviceDelete" class="btn btn-danger ms-auto">Delete Data</button><br />
+<button id="deviceUnselect" class="btn btn-success ms-auto">Unselect All</button><br />
+
+<table id="device" class="display" style="width: 100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Vorname</th>
+      <th>Username</th>
+      <th>Passwort</th>
+      <th>Computername</th>
+      <th>Workgroup</th>
+      <th>System</th>
+      <th>IP</th>
+      <th>Mac</th>
+      <th>Datum</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Vorname</th>
+      <th>Username</th>
+      <th>Passwort</th>
+      <th>Computername</th>
+      <th>Workgroup</th>
+      <th>System</th>
+      <th>IP</th>
+      <th>Mac</th>
+      <th>Datum</th>
+    </tr>
+  </tfoot>
+</table>
+
+<script src="/js/device.bundle.js"></script>

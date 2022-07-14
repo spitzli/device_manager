@@ -1,0 +1,10 @@
+{
+  "tasks": {
+    "start": "deno run -A --watch --unstable --no-check mod.ts",
+    "migration:create": "deno run --config=./deno.json -A --unstable https://deno.land/x/nessie/cli.ts make",
+    "migration:status": "deno run --config=./deno.json -A --unstable https://deno.land/x/nessie/cli.ts status --file-names",
+    "migrate": "deno run --config=./deno.json -A --unstable https://deno.land/x/nessie/cli.ts migrate",
+    "rollback": "deno run --config=./deno.json -A --unstable https://deno.land/x/nessie/cli.ts rollback all"
+  },
+  "importMap": "./import_map.json"
+}
