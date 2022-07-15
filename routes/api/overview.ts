@@ -16,6 +16,6 @@ export default new Router({ prefix: "/api" })
 
     return (context.response.body = { data });
   })
-  .all("/geraete", () => {
+  .all("/overview", () => {
     throw new httpErrors.MethodNotAllowed("Method Not Allowed");
   });
