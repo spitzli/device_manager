@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Build
 
 on:
   push:
@@ -28,8 +28,9 @@ jobs:
       run: |
         ls -la
         cd frontend
-        npm install
-        npx webpack
+        npm install -g yarn
+        yarn
+        yarn build
 
     - uses: actions/download-artifact@v3
 
