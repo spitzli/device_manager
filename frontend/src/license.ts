@@ -19,11 +19,11 @@ $(document).ready(async function () {
     event.preventDefault();
 
     const id = $("input#id").val().toString();
-    const key = $("input#key").val().toString();
-    const software_id = $("input#software_id").val().toString();
     const geraete_id = $("input#geraete_id").val().toString();
     const cors = $("input#cors").val().toString();
     const quantity = $("input#quantity").val().toString();
+    const key = $("input#key").val().toString();
+    const software_id = $("input#software_id").val().toString();
 
     await fetch("/api/license", {
       method: "POST",
@@ -51,6 +51,8 @@ $(document).ready(async function () {
     if ($(this).hasClass("selected")) {
       $("input#id").val(row.id);
       $("input#key").val(row.key);
+      $("input#cors").val(row.cors);
+      $("input#quantity").val(row.quantity);
       $("input#software_id").val(row.software_id);
       $("input#geraete_id").val(row.geraete_id);
     } else {
