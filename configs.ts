@@ -14,8 +14,8 @@ export const configs = {
     database: "mgr",
   },
   captcha: {
-    secret: "0xD639d5350830189036A084Cb23A1E4A8128C07b5",
-    siteKey: "53b5c077-a612-453f-8e31-fbe8c61fb1af",
+    secret: "x",
+    siteKey: "x",
   },
   fernet: {
     client: {
