@@ -18,6 +18,7 @@ const migration = Deno.run({
     "--unstable",
     "--no-check",
     //"--config=deno.json ",
+    "--import-map=import_map.json",
     "https://deno.land/x/nessie@2.0.5/cli.ts",
     "migrate",
   ],
