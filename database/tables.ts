@@ -37,4 +37,6 @@ export const license = mammoth.defineTable({
   key: mammoth.text().notNull(),
   software_id: mammoth.text().notNull(),
   geraete_id: mammoth.text().notNull(),
+  cors: mammoth.text(),
+  quantity: mammoth.text(),
 });

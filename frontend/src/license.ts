@@ -2,7 +2,15 @@ $(document).ready(async function () {
   //@ts-ignore
   const license = $("#license").DataTable({
     ajax: "/api/license",
-    columns: [{ data: "id" }, { data: "key" }, { data: "software_id" }, { data: "geraete_id" }],
+    columns: [
+      { data: "id" },
+      { data: "key" },
+      { data: "cors" },
+      { data: "quantity" },
+      { data: "software_id" },
+      { data: "bezeichnung" },
+      { data: "geraete_id" },
+    ],
   });
 
   const form = $("form#licenseForm");
@@ -14,6 +22,8 @@ $(document).ready(async function () {
     const key = $("input#key").val().toString();
     const software_id = $("input#software_id").val().toString();
     const geraete_id = $("input#geraete_id").val().toString();
+    const cors = $("input#cors").val().toString();
+    const quantity = $("input#quantity").val().toString();
 
     await fetch("/api/license", {
       method: "POST",
@@ -23,6 +33,8 @@ $(document).ready(async function () {
       body: JSON.stringify({
         id: id,
         key: key,
+        cors: cors,
+        quantity: quantity,
         software_id: software_id,
         geraete_id: geraete_id,
       }),

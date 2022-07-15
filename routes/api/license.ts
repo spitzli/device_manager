@@ -9,8 +9,18 @@ export default new Router({ prefix: "/api" })
   .get("/license", userGuard(["Client"], "ADMIN"), async (context: Context) => {
     context.response.type = "application/json";
     const data = await db
-      .select(db.license.id, db.license.key, db.license.software_id, db.license.geraete_id)
-      .from(db.license);
+      .select(
+        db.license.id,
+        db.license.key,
+        db.license.software_id,
+        db.license.geraete_id,
+        db.license.cors,
+        db.license.quantity,
+        db.software.bezeichnung,
+      )
+      .from(db.license)
+      .leftJoin(db.software)
+      .on(db.software.id.eq(db.license.software_id));
     return (context.response.body = { data });
   })
   .post(
@@ -23,19 +33,25 @@ export default new Router({ prefix: "/api" })
     }),
     userGuard(["Client"], "ADMIN"),
     async (context: Context) => {
-      const { id, key, software_id, geraete_id } = await context.request.body({ type: "json" }).value.catch(() => ({}));
+      const { id, key, cors, quantity, software_id, geraete_id } = await context.request
+        .body({ type: "json" })
+        .value.catch(() => ({}));
 
       await db
         .insertInto(db.license)
         .values({
           id,
           key,
+          cors,
+          quantity,
           software_id,
           geraete_id,
         })
         .onConflict("id")
         .doUpdateSet({
           key,
+          cors,
+          quantity,
           software_id,
           geraete_id,
         });
