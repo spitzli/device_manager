@@ -89,7 +89,7 @@ export default new Router({ prefix: "/api" })
       status: 200,
       message: "ok",
     });
-  })
+  }); /* 
   .all("/device", () => {
     throw new httpErrors.MethodNotAllowed("Method Not Allowed");
-  });
+  }); */
