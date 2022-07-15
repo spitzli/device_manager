@@ -2,7 +2,7 @@ import { send } from "oak";
 import { Context } from "types";
 import { sendEta } from "helpers";
 
-export async function fileMiddleware(context: Context, next: () => Promise<void>) {
+export async function fileMiddleware(context: Context, next: () => Promise<unknown>) {
   // FAVICON IS SOO COOL SO IT GETS ITS OWN SPECIAL PATH
   if (/^\/favicon.(png|ico)$/.test(context.request.url.pathname)) {
     return await send(context, "/images/favicon.png", {
