@@ -31,6 +31,10 @@ jobs:
         npm install -g yarn
         yarn
         yarn build
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ./
 
     - uses: actions/download-artifact@v3
 
