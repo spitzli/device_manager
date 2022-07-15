@@ -1,8 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  mode: "development", //development || production
-  watch: true,
+  mode: "production", //development || production
   entry: {
     auth: "./src/auth.ts",
     main: "./src/main.ts",
