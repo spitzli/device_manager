@@ -5,6 +5,7 @@ USER deno
 WORKDIR /app
 
 COPY . .
+COPY deno.json .
 
 RUN deno cache --unstable mod.ts
 
