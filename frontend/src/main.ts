@@ -8,7 +8,7 @@ $(document).ready(async function () {
     $("li#licenseLi").removeClass("active");
   }
 
-  if (window.location.pathname === "/device") {
+  if (window.location.pathname === "/geraete") {
     $("li#overviewLi").removeClass("active");
     $("li#deviceLi").addClass("active");
     $("li#softwareLi").removeClass("active");

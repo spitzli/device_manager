@@ -4,7 +4,7 @@ import { sendEta } from "helpers";
 import { userGuard } from "middlewares";
 
 export default new Router()
-  .get("/device", userGuard(["Client"], "ADMIN"), (context: Context) => {
+  .get("/geraete", userGuard(["Client"], "ADMIN"), (context: Context) => {
     return sendEta(context, "device", {
       page: {
         title: "Geräte",
@@ -12,6 +12,6 @@ export default new Router()
       user: context.state.user,
     });
   })
-  .all("/device", () => {
+  .all("/geraete", () => {
     throw new httpErrors.MethodNotAllowed("Method Not Allowed");
   });

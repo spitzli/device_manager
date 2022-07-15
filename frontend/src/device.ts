@@ -1,7 +1,7 @@
 $(document).ready(async function () {
   //@ts-ignore
   const device = $("#device").DataTable({
-    ajax: "/api/device",
+    ajax: "/api/geraete",
     columns: [
       { data: "id" },
       { data: "name" },
@@ -34,7 +34,7 @@ $(document).ready(async function () {
     const mac_adress = $("input#mac_adress").val().toString();
     const datum = $("input#datum").val().toString();
 
-    await fetch("/api/device", {
+    await fetch("/api/geraete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -90,7 +90,7 @@ $(document).ready(async function () {
     const rows = device.rows(".selected").data();
 
     for (const row of rows) {
-      await fetch("/api/device", {
+      await fetch("/api/geraete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

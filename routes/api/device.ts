@@ -6,7 +6,7 @@ import * as validator from "validasaur";
 import { userGuard } from "middlewares";
 
 export default new Router({ prefix: "/api" })
-  .get("/device", userGuard(["Client"], "ADMIN"), async (context: Context) => {
+  .get("/geraete", userGuard(["Client"], "ADMIN"), async (context: Context) => {
     context.response.type = "application/json";
     const data = await db
       .select(
@@ -26,7 +26,7 @@ export default new Router({ prefix: "/api" })
     return (context.response.body = { data });
   })
   .post(
-    "/device",
+    "/geraete",
     requestValidator({
       id: validator.required,
       name: validator.required,
@@ -80,7 +80,7 @@ export default new Router({ prefix: "/api" })
       });
     },
   )
-  .delete("/device", userGuard(["Client"], "ADMIN"), async (context: Context) => {
+  .delete("/geraete", userGuard(["Client"], "ADMIN"), async (context: Context) => {
     const { id } = await context.request.body({ type: "json" }).value.catch(() => ({}));
 
     await db.deleteFrom(db.geraete).where(db.geraete.id.eq(id));
@@ -89,7 +89,7 @@ export default new Router({ prefix: "/api" })
       status: 200,
       message: "ok",
     });
-  }); /* 
-  .all("/device", () => {
+  })
+  .all("/geraete", () => {
     throw new httpErrors.MethodNotAllowed("Method Not Allowed");
-  }); */
+  });
