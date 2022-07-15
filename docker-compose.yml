@@ -10,7 +10,6 @@ services:
       - 127.0.0.1:80:3000
     depends_on:
       database:
-        condition: service_healthy
     links:
       - database
 
