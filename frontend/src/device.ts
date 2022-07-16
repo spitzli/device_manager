@@ -14,6 +14,8 @@ $(document).ready(async function () {
       { data: "ip_adress" },
       { data: "mac_adress" },
       { data: "datum" },
+      { data: "license_id" },
+      { data: "amount" },
     ],
   });
 
@@ -33,6 +35,8 @@ $(document).ready(async function () {
     const ip_adress = $("input#ip_adress").val().toString();
     const mac_adress = $("input#mac_adress").val().toString();
     const datum = $("input#datum").val().toString();
+    const license_id = $("input#license_id").val().toString();
+    const amount = $("input#amount").val().toString();
 
     await fetch("/api/device", {
       method: "POST",
@@ -51,6 +55,8 @@ $(document).ready(async function () {
         ip_adress: ip_adress,
         mac_adress: mac_adress,
         datum: datum,
+        license_id: license_id,
+        amount: amount,
       }),
     }).then((res) => res.json());
 
@@ -74,6 +80,8 @@ $(document).ready(async function () {
       $("input#ip_adress").val(row.ip_adress);
       $("input#mac_adress").val(row.mac_adress);
       $("input#datum").val(row.datum);
+      $("input#license_id").val(row.license_id);
+      $("input#amount").val(row.amount);
     } else {
       //@ts-ignore
       form[0].reset();

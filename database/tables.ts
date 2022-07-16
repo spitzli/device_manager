@@ -25,6 +25,8 @@ export const geraete = mammoth.defineTable({
   ip_adress: mammoth.text().notNull(),
   mac_adress: mammoth.text().notNull(),
   datum: mammoth.text().notNull(),
+  license_id: mammoth.text(),
+  amount: mammoth.text(),
 });
 
 export const software = mammoth.defineTable({
@@ -36,7 +38,6 @@ export const license = mammoth.defineTable({
   id: mammoth.text().primaryKey().notNull(),
   key: mammoth.text().notNull(),
   software_id: mammoth.text().notNull(),
-  geraete_id: mammoth.text().notNull(),
   cors: mammoth.text(),
   quantity: mammoth.text(),
 });

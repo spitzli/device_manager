@@ -21,6 +21,8 @@ export default new Router({ prefix: "/api" })
         db.geraete.ip_adress,
         db.geraete.mac_adress,
         db.geraete.datum,
+        db.geraete.license_id,
+        db.geraete.amount,
       )
       .from(db.geraete);
     return (context.response.body = { data });
@@ -42,8 +44,21 @@ export default new Router({ prefix: "/api" })
     }),
     userGuard(["Client"], "ADMIN"),
     async (context: Context) => {
-      const { id, name, vorname, username, password, computername, workgroup, system, ip_adress, mac_adress, datum } =
-        await context.request.body({ type: "json" }).value.catch(() => ({}));
+      const {
+        id,
+        name,
+        vorname,
+        username,
+        password,
+        computername,
+        workgroup,
+        system,
+        ip_adress,
+        mac_adress,
+        datum,
+        license_id,
+        amount,
+      } = await context.request.body({ type: "json" }).value.catch(() => ({}));
 
       await db
         .insertInto(db.geraete)
@@ -59,6 +74,8 @@ export default new Router({ prefix: "/api" })
           ip_adress,
           mac_adress,
           datum,
+          license_id,
+          amount,
         })
         .onConflict("id")
         .doUpdateSet({
@@ -72,7 +89,27 @@ export default new Router({ prefix: "/api" })
           ip_adress,
           mac_adress,
           datum,
+          license_id,
+          amount,
         });
+
+      const remainingLicense = await db
+        .select(db.license.quantity)
+        .from(db.license)
+        .where(db.license.id.eq(license_id));
+
+      if (!remainingLicense[0].quantity) throw new httpErrors.BadRequest("License is empty");
+
+      if (amount > parseInt(remainingLicense[0].quantity)) {
+        throw new httpErrors.BadRequest("Not enough licenses");
+      }
+
+      await db
+        .update(db.license)
+        .set({
+          quantity: (parseInt(remainingLicense[0].quantity) - parseInt(amount)).toString(),
+        })
+        .where(db.license.id.eq(license_id));
 
       return (context.response.body = {
         status: 200,
@@ -82,6 +119,29 @@ export default new Router({ prefix: "/api" })
   )
   .delete("/device", userGuard(["Client"], "ADMIN"), async (context: Context) => {
     const { id } = await context.request.body({ type: "json" }).value.catch(() => ({}));
+
+    const device = await db
+      .select(db.geraete.license_id, db.geraete.amount)
+      .from(db.geraete)
+      .where(db.geraete.id.eq(id));
+
+    if (!device[0].license_id) throw new httpErrors.BadRequest("Device has no license");
+
+    const remainingLicense = await db
+      .select(db.license.quantity)
+      .from(db.license)
+      .where(db.license.id.eq(device[0].license_id));
+
+    if (!remainingLicense[0].quantity) throw new httpErrors.BadRequest("License is empty");
+
+    if (!device[0].amount) throw new httpErrors.BadRequest("Not enough licenses");
+
+    await db
+      .update(db.license)
+      .set({
+        quantity: (parseInt(remainingLicense[0].quantity) + parseInt(device[0].amount)).toString(),
+      })
+      .where(db.license.id.eq(device[0].license_id));
 
     await db.deleteFrom(db.geraete).where(db.geraete.id.eq(id));
 

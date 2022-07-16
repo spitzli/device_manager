@@ -9,7 +9,6 @@ $(document).ready(async function () {
       { data: "quantity" },
       { data: "software_id" },
       { data: "bezeichnung" },
-      { data: "geraete_id" },
     ],
   });
 
@@ -19,7 +18,6 @@ $(document).ready(async function () {
     event.preventDefault();
 
     const id = $("input#id").val().toString();
-    const geraete_id = $("input#geraete_id").val().toString();
     const cors = $("input#cors").val().toString();
     const quantity = $("input#quantity").val().toString();
     const key = $("input#key").val().toString();
@@ -36,7 +34,6 @@ $(document).ready(async function () {
         cors: cors,
         quantity: quantity,
         software_id: software_id,
-        geraete_id: geraete_id,
       }),
     }).then((res) => res.json());
 
@@ -54,7 +51,6 @@ $(document).ready(async function () {
       $("input#cors").val(row.cors);
       $("input#quantity").val(row.quantity);
       $("input#software_id").val(row.software_id);
-      $("input#geraete_id").val(row.geraete_id);
     } else {
       //@ts-ignore
       form[0].reset();

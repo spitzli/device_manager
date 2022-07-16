@@ -13,7 +13,6 @@ export default new Router({ prefix: "/api" })
         db.license.id,
         db.license.key,
         db.license.software_id,
-        db.license.geraete_id,
         db.license.cors,
         db.license.quantity,
         db.software.bezeichnung,
@@ -33,7 +32,7 @@ export default new Router({ prefix: "/api" })
     }),
     userGuard(["Client"], "ADMIN"),
     async (context: Context) => {
-      const { id, key, cors, quantity, software_id, geraete_id } = await context.request
+      const { id, key, cors, quantity, software_id } = await context.request
         .body({ type: "json" })
         .value.catch(() => ({}));
 
@@ -45,7 +44,6 @@ export default new Router({ prefix: "/api" })
           cors,
           quantity,
           software_id,
-          geraete_id,
         })
         .onConflict("id")
         .doUpdateSet({
@@ -53,7 +51,6 @@ export default new Router({ prefix: "/api" })
           cors,
           quantity,
           software_id,
-          geraete_id,
         });
 
       return (context.response.body = {

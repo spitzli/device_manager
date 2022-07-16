@@ -12,7 +12,7 @@ export default new Router({ prefix: "/api" })
       .innerJoin(db.software)
       .on(db.license.software_id.eq(db.software.id))
       .innerJoin(db.geraete)
-      .on(db.license.geraete_id.eq(db.geraete.id));
+      .on(db.geraete.license_id.eq(db.license.id));
 
     return (context.response.body = { data });
   })
