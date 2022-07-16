@@ -2,6 +2,7 @@ import { isHttpError, Status } from "oak";
 import { Context } from "types";
 import { configs } from "config";
 import { logger } from "utils";
+import { sendEta } from "helpers";
 
 const log = logger({ name: "Error Middleware", logLevel: configs.general.env === "development" ? 0 : 1 });
 
@@ -18,6 +19,10 @@ export async function errorMiddleware(context: Context, next: () => Promise<unkn
      * end user in non "development" mode
      */
     if (!isHttpError(err)) {
+      if (message === "Invalid Token: HMAC") {
+        context.cookies.delete("token");
+        return context.response.redirect("/login");
+      }
       message = configs.general.env === "development" ? message : "Internal Server Error";
     }
 
@@ -30,6 +35,9 @@ export async function errorMiddleware(context: Context, next: () => Promise<unkn
     }
 
     context.response.status = status;
-    context.response.body = { status, message };
+
+    if (context.request.url.pathname.split("/")[1] !== "api")
+      return await sendEta(context, "500", { page: { title: "500" } });
+    return (context.response.body = { status, message });
   }
 }
